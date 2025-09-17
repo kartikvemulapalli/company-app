@@ -1,0 +1,80 @@
+project:
+  name: "Interview Tracker"
+  description: "A portfolio app with Firebase authentication to manage interview details."
+  structure:
+    - path: index.html
+      type: html
+      content: |
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Interview Tracker</title>
+          <link rel="stylesheet" href="style.css">
+        </head>
+        <body>
+          <div id="app"></div>
+          <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+          <script src="app.js"></script>
+        </body>
+        </html>
+
+    - path: style.css
+      type: css
+      content: |
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f5;
+          color: #333;
+        }
+        #app {
+          width: 90%;
+          margin: 20px auto;
+          padding: 20px;
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        }
+
+    - path: app.js
+      type: javascript
+      content: |
+        // Firebase configuration
+        var firebaseConfig = {
+          apiKey: "YOUR_API_KEY",
+          authDomain: "your-app.firebaseapp.com",
+          projectId: "your-app",
+          storageBucket: "your-app.appspot.com",
+          messagingSenderId: "123456789",
+          appId: "1:123456789:web:abc123"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Example: Authentication logic
+        function login(email, password) {
+          return auth.signInWithEmailAndPassword(email, password)
+            .then(user => console.log("Logged in:", user.user.email))
+            .catch(err => console.error("Error:", err));
+        }
+
+    - path: README.md
+      type: markdown
+      content: |
+        # Interview Tracker
+        This is a simple portfolio app that allows users to log in with Firebase and track interview details.
+
+        ## Features
+        - Firebase authentication
+        - Interview data storage
+        - Responsive UI
+
+        ## Setup
+        1. Update `app.js` with your Firebase credentials.
+        2. Run the project by opening `index.html` in a browser.
+        3. Deploy using Firebase Hosting or another static host.
